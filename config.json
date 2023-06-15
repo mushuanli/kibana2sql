@@ -1,0 +1,100 @@
+{
+    "baseurl": "https://test.us-east-1.es.amazonaws.com",
+    "cookie":"get-from-chrome-header",
+
+    "url":"/_plugin/kibana/internal/search/es",
+    "head":{
+      "content-type":"application/json",
+      "kbn-version": "7.10.2",
+      "cookie": ""
+    },
+    "body":{
+      "params":{
+        "index":"slog-*.ase*",
+        "body":{
+          "version":true,
+          "size":1000,
+          "sort":[
+            {
+              "timestamp":{
+                "order":"asc",
+                "unmapped_type":"boolean"
+              }
+            }
+          ],
+          "aggs":{
+            "2":{
+              "date_histogram":{
+                "field":"timestamp",
+                "calendar_interval":"1h",
+                "time_zone":"UTC",
+                "min_doc_count":1
+              }
+            }
+          },
+          "stored_fields":[
+            "*"
+          ],
+          "script_fields":{
+            
+          },
+          "docvalue_fields":[
+            {
+              "field":"message.details.endDateTime",
+              "format":"date_time"
+            },
+            {
+              "field":"message.details.startDateTime",
+              "format":"date_time"
+            },
+            {
+              "field":"timestamp",
+              "format":"date_time"
+            }
+          ],
+          "_source":{
+            "excludes":[
+              
+            ]
+          },
+          "query":{
+            "bool":{
+              "must":[
+                
+              ],
+              "filter":[
+                {
+                  "bool":{
+                    "should":[
+                      {
+                        "match":{
+                          "serviceName":"ase"
+                        }
+                      }
+                    ],
+                    "minimum_should_match":1
+                  }
+                },
+                {
+                  "range":{
+                    "timestamp":{
+                      "gte":"2023-05-17T07:25:14.283Z",
+                      "lte":"2023-05-19T07:40:21.617Z",
+                      "format":"strict_date_optional_time"
+                    }
+                  }
+                }
+              ],
+              "should":[
+                
+              ],
+              "must_not":[
+                
+              ]
+            }
+          }
+        },
+        "preference":1684481967310
+      }
+    }
+  }

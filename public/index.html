@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>Search Log Query Interface</title>
+      <style>
+        .input-row {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .input-row label {
+            margin-right: 5px;
+        }
+        #info {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Choose an action.</h1>
+    <button id="login" type="button" title="Simulate login">
+      login
+    </button>
+    <button id="wsSendButton" type="button" title="Run Command">
+        Run Command
+    </button>
+    <button id="wsCleanButton" type="button" title="Reset">
+        Clean
+    </button>
+    <button id="logout" type="button" title="Simulate logout">
+      logout
+    </button>
+    <div class="input-row">
+        <label for="command">Command:</label>
+        <select id="command">
+            <option value="stat">stat</option>
+            <option value="sql">sql</option>
+            <option value="sync">sync</option>
+            <option value="stop">stop</option>.
+        </select>
+        <label for="start">Start timestamp:</label>
+        <input type="datetime-local" id="startTimestamp">
+        <label for="end">End timestamp:</label>
+        <input type="datetime-local" id="endTimestamp">
+    </div>
+    <div class="input-row">
+        <label for="info">Additional Info:</label>
+        <input type="text" id="info">
+    </div>
+    <pre id="messages" style="height: 400px; overflow: scroll"></pre>
+    <script src="index.js"></script>
+  </body>
+</html>
